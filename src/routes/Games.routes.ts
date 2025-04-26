@@ -12,4 +12,10 @@ router.get('/games/:id/edit', withAuth, controllers.games.getEditGameByID)
 router.get('/games/:id', withAuth, controllers.games.getGameByID)
 router.get('/games', withAuth, controllers.games.getGames)
 
+// crud routes
+router.post('/games/new', withAuth, controllers.games.newGame)
+router.post('/games/:id', withAuth, controllers.games.editGame)
+// post method as we are deleting using html forms
+router.post('/games/:id/delete', withAuth, controllers.games.deleteGame)
+
 export default router;

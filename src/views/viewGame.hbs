@@ -1,0 +1,63 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h1>{{name}}</h1>
+            <p>Purchased on: {{datePurchased}}</p>
+            <p>Will Play on: {{willPlayDate}}</p>
+
+            <div class="mb-3">
+                <label for="notes" class="form-label">Notes</label>
+                <div class="form-control" id="notes" style="white-space: pre-line;">{{notes}}</div>
+            </div>
+
+            <div>
+                <a class="btn btn-primary btn-sm me-2" href="/games/{{id}}/edit">Edit</a>
+                <button class="btn btn-danger btn-sm">Delete</button>
+            </div>
+
+            <hr class="my-4">
+
+            <h2>Comments</h2>
+            <button class="btn btn-primary btn-sm mb-3" data-bs-toggle="modal"
+                data-bs-target="#newCommentModal">New</button>
+
+            <div id="comments-container">
+                {{#each comments}}
+                {{> comment}}
+                {{else}}
+                <p>No comments yet.</p>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!--  new comment modal  --}}
+<div class="modal fade" id="newCommentModal" tabindex="-1" aria-labelledby="newCommentModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="newCommentModalLabel">New Comment</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="newCommentForm" method="post" action="/games/{{id}}/comments/new">
+                    <div class="mb-3">
+                        <label for="commentTitle" class="form-label">Comment Title</label>
+                        <input type="text" class="form-control" id="commentTitle" name="title" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="commentDate" class="form-label">Date</label>
+                        <input type="date" class="form-control" id="commentDate" name="date" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="commentText" class="form-label">Comment Text</label>
+                        <textarea class="form-control" id="commentText" rows="3" name="content" required></textarea>
+                    </div>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success" id="saveNewComment">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

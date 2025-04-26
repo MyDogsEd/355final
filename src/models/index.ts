@@ -1,7 +1,17 @@
 import UserModel from './User.model'
-
-// TODO: Define Associations
+import GameModel from './Game.model'
+import CommentModel from './Comment.model'
 
 const User = UserModel
+const Game = GameModel
+const Comment = CommentModel
 
-export { User }
+// associations
+User.hasMany(Game)
+Game.belongsTo(User)
+
+Game.hasMany(Comment)
+Comment.belongsTo(Game)
+
+// export
+export { User, Game, Comment }

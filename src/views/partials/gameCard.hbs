@@ -2,14 +2,37 @@
   <div class="row g-0">
     <div class="col-md-8">
       <div class="card-body">
-        <h5 class="card-title">{{title}}</h5>
-        <p class="card-text"><small class="text-muted">Purchased on: {{purchaseDate}}</small></p>
-        <p class="card-text"><small class="text-muted">Will Play on: {{playDate}}</small></p>
+        <h5 class="card-title">{{name}}</h5>
+        <p class="card-text"><small class="text-muted">Purchased on: {{formattedDatePurchased}}</small></p>
+        <p class="card-text"><small class="text-muted">Will Play on: {{formattedWillPlayDate}}</small></p>
         <div>
-          <button type="button" class="btn btn-success btn-sm">{{viewLabel}}</button>
-          <button type="button" class="btn btn-primary btn-sm ms-2">{{editLabel}}</button>
-          <button type="button" class="btn btn-danger btn-sm ms-2">{{deleteLabel}}</button>
+          <a type="button" class="btn btn-success btn-sm" href="/games/{{id}}">View</a>
+          <a type="button" class="btn btn-primary btn-sm ms-2" href="/games/{{id}}/edit">Edit</a>
+          <button type="button" class="btn btn-danger btn-sm ms-2" data-bs-toggle="modal"
+            data-bs-target="#deleteModal">Delete</button>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{!-- modal for delete --}}
+
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Confirm Logout</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete this game?
+      </div>
+      <div class="modal-footer">
+        <form action="/games/{{id}}/delete" method="post" class="d-inline">
+          <button type="submit" class="btn btn-danger">Yes, delete this game</button>
+        </form>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
       </div>
     </div>
   </div>
