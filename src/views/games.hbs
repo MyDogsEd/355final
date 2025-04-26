@@ -1,0 +1,18 @@
+<div class="container mt-4">
+    {{#if games}}
+        {{#each games}}
+        {{> gameCard this}}
+        {{/each}}
+    {{else}}
+    <div class="d-flex justify-content-center align-items-center text-center">
+        <div>
+            <p class="fs-3">no games :/</p>
+            <p class="lead">
+                Try adding one!
+            </p>
+            <a href="/games/new" class="btn btn-primary mt-3">New Game</a>
+        </div>
+    </div>
+    {{/if}}
+
+</div>

@@ -1,0 +1,67 @@
+<nav class="navbar bg-light border rounded m-3 p-2">
+  <div class="container-fluid d-flex justify-content-between align-items-center">
+    <span class="navbar-brand mb-0 h1">Game Backlog Tracker</span>
+
+    <div class="d-flex gap-3">
+      <a href="/games" class="nav-link">Browse</a>
+      <a href="/games/new" class="nav-link">New</a>
+    </div>
+
+    <button id="login-button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#logoutModal">
+      {{#if username}}
+      Welcome, {{username}}!
+      {{else}}
+      Welcome
+      {{/if}}
+    </button>
+  </div>
+</nav>
+
+{{#if logged_in}}
+<div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="logoutModalLabel">Confirm Logout</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to log out?
+      </div>
+      <div class="modal-footer">
+        <form action="/auth/logout" method="POST" class="d-inline">
+          <button type="submit" class="btn btn-danger">Yes, log me out</button>
+        </form>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+{{/if}}
+
+<style>
+  /* switch color to red on hover */
+  #login-button:hover {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: #fff;
+    transition: background-color 0.2s, border-color 0.2s;
+  }
+
+  #login-button {
+    min-width: 160px;
+  }
+</style>
+
+<script defer>
+  const originalText = $('#login-button').text();
+
+  $('#login-button').hover((event) => {
+    if (event.type === 'mouseenter') {
+      $('#login-button').text("Log Out");
+    }
+    else {
+      $('#login-button').text(originalText);
+    }
+  })
+</script>

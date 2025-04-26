@@ -1,0 +1,25 @@
+<div class="container mt-5">
+  <h1>Create Game Entry</h1>
+  <form>
+    <div class="mb-3">
+      <label for="gameName" class="form-label">Game Name</label>
+      <input type="text" class="form-control" id="gameName" placeholder="Enter game title" required>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="datePurchased" class="form-label">Date Purchased</label>
+        <input type="date" class="form-control" id="datePurchased" required>
+      </div>
+      <div class="col-md-6">
+        <label for="willPlayOn" class="form-label">Will Play On</label>
+        <input type="date" class="form-control" id="willPlayDate" required>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="notes" class="form-label">Notes (optional)</label>
+      <textarea class="form-control" id="notes" rows="3"></textarea>
+    </div>
+    <button type="button" class="btn btn-secondary" href="/games">Cancel</button>
+    <button type="submit" class="btn btn-success ms-2">Submit</button>
+  </form>
+</div>
